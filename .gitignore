@@ -1,0 +1,18 @@
+# Finder
+
+.DS_Store
+
+# Swift Package Manager
+
+/.build
+/Packages
+
+# Xcode
+
+*.xcworkspace/
+xcuserdata/
+
+# Rust
+
+**/target/
+
