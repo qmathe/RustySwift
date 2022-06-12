@@ -22,6 +22,7 @@
 		60488CC228565ABE00F465D9 /* RustySwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RustySwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60488CC828565ABE00F465D9 /* RustySwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RustySwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60488CCA28565ABE00F465D9 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		60488CD928565C7F00F465D9 /* rusty */ = {isa = PBXFileReference; lastKnownFileType = folder; path = rusty; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +46,7 @@
 		60488CB528565ABB00F465D9 = {
 			isa = PBXGroup;
 			children = (
+				60488CD928565C7F00F465D9 /* rusty */,
 				60488CBA28565ABC00F465D9 /* Shared */,
 				60488CC928565ABE00F465D9 /* macOS */,
 				60488CC328565ABE00F465D9 /* Products */,

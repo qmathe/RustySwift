@@ -1,0 +1,23 @@
+[package]
+name = "rusty"
+version = "0.1.0"
+authors = ["Quentin Mathé <quentin.mathe@gmail.com>"]
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+
+# For building the release versions:
+# $ cargo build --release --target=x86_64-apple-darwin
+# $ cargo build --release --target=aarch64-apple-darwin 
+# $ cargo build --release --target=aarch64-apple-ios
+#
+# The output libraries are located in rusty/target/x86_64-apple-darwin,  
+# rusty/target/aarch64-apple-darwin and rusty/target/aarch64-apple-ios
+#
+# In Xcode, we pass -lrusty to Other Linker Flags and point Library Search Paths to different 
+# directories depending on Platform and Architecture in Release config. In this way, we don't  
+# link a specific static library as usually done with Build Phases > Link Binary With Libraries. 
+[lib]
+crate-type = ["staticlib"]
