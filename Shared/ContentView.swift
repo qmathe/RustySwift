@@ -8,9 +8,29 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var a: Double = 0
+    @State var b: Double = 0
+    @State var result: Double = 0
+
     var body: some View {
-        Text("Hello, world!")
+        VStack {
+            Text(result, format: .number)
+                .font(.largeTitle)
+                .padding()
+            HStack {
+                TextField("A", value: $a, format: .number)
+                TextField("A", value: $b, format: .number)
+            }
             .padding()
+        }
+        .onChange(of: a, perform: update)
+        .onChange(of: b, perform: update)
+        .padding()
+    }
+    
+    func update(_ value: Double) {
+        result = average(a, b)
     }
 }
 
