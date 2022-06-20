@@ -8,6 +8,8 @@
 #ifndef BridgingHeader_h
 #define BridgingHeader_h
 
+#import "rusty.h"
+
 double average(double a, double b);
 
 #endif /* BridgingHeader_h */

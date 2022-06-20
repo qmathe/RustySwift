@@ -1,3 +1,4 @@
+pub mod point;
 
 #[no_mangle]
 pub extern "C" fn average(a: f64, b: f64) -> f64 {

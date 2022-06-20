@@ -7,18 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		601A8277285F175B001B5781 /* DistanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601A8276285F175B001B5781 /* DistanceView.swift */; };
+		601A8278285F175B001B5781 /* DistanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601A8276285F175B001B5781 /* DistanceView.swift */; };
+		601A827B285F2179001B5781 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601A8275285F1754001B5781 /* ContentView.swift */; };
+		601A827C285F2179001B5781 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601A8275285F1754001B5781 /* ContentView.swift */; };
 		60488CCB28565ABE00F465D9 /* RustySwiftApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60488CBB28565ABC00F465D9 /* RustySwiftApp.swift */; };
 		60488CCC28565ABE00F465D9 /* RustySwiftApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60488CBB28565ABC00F465D9 /* RustySwiftApp.swift */; };
-		60488CCD28565ABE00F465D9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60488CBC28565ABC00F465D9 /* ContentView.swift */; };
-		60488CCE28565ABE00F465D9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60488CBC28565ABC00F465D9 /* ContentView.swift */; };
+		60488CCD28565ABE00F465D9 /* AverageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60488CBC28565ABC00F465D9 /* AverageView.swift */; };
+		60488CCE28565ABE00F465D9 /* AverageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60488CBC28565ABC00F465D9 /* AverageView.swift */; };
 		60488CCF28565ABE00F465D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60488CBD28565ABE00F465D9 /* Assets.xcassets */; };
 		60488CD028565ABE00F465D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60488CBD28565ABE00F465D9 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		601A8274285E3A59001B5781 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
+		601A8275285F1754001B5781 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		601A8276285F175B001B5781 /* DistanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceView.swift; sourceTree = "<group>"; };
 		60488CBB28565ABC00F465D9 /* RustySwiftApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RustySwiftApp.swift; sourceTree = "<group>"; };
-		60488CBC28565ABC00F465D9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		60488CBC28565ABC00F465D9 /* AverageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AverageView.swift; sourceTree = "<group>"; };
 		60488CBD28565ABE00F465D9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		60488CC228565ABE00F465D9 /* RustySwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RustySwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60488CC828565ABE00F465D9 /* RustySwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RustySwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,7 +64,9 @@
 			isa = PBXGroup;
 			children = (
 				60488CBB28565ABC00F465D9 /* RustySwiftApp.swift */,
-				60488CBC28565ABC00F465D9 /* ContentView.swift */,
+				60488CBC28565ABC00F465D9 /* AverageView.swift */,
+				601A8276285F175B001B5781 /* DistanceView.swift */,
+				601A8275285F1754001B5781 /* ContentView.swift */,
 				60488CBD28565ABE00F465D9 /* Assets.xcassets */,
 				601A8274285E3A59001B5781 /* BridgingHeader.h */,
 			);
@@ -89,6 +97,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 60488CD328565ABE00F465D9 /* Build configuration list for PBXNativeTarget "RustySwift (iOS)" */;
 			buildPhases = (
+				601A8279285F19C9001B5781 /* Rust */,
 				60488CBE28565ABE00F465D9 /* Sources */,
 				60488CBF28565ABE00F465D9 /* Frameworks */,
 				60488CC028565ABE00F465D9 /* Resources */,
@@ -106,6 +115,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 60488CD628565ABE00F465D9 /* Build configuration list for PBXNativeTarget "RustySwift (macOS)" */;
 			buildPhases = (
+				601A827A285F19FB001B5781 /* Rust */,
 				60488CC428565ABE00F465D9 /* Sources */,
 				60488CC528565ABE00F465D9 /* Frameworks */,
 				60488CC628565ABE00F465D9 /* Resources */,
@@ -175,12 +185,53 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		601A8279285F19C9001B5781 /* Rust */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Rust;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "source \"$HOME/.cargo/env\"\ncd topaz\nif [ $CONFIGURATION = \"Release\" ]; then\n    cargo build --release --target=x86_64-apple-ios\n    cargo build --release --target=aarch64-apple-ios\nelse\n    cargo build\nfi;\ncbindgen . -o target/rusty.h\n";
+		};
+		601A827A285F19FB001B5781 /* Rust */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Rust;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "source \"$HOME/.cargo/env\"\ncd rusty\nif [ $CONFIGURATION = \"Release\" ]; then\n    cargo build --release --target=x86_64-apple-darwin\n    cargo build --release --target=aarch64-apple-darwin \nelse\n    cargo build\nfi;\ncbindgen . -o target/rusty.h\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		60488CBE28565ABE00F465D9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				60488CCD28565ABE00F465D9 /* ContentView.swift in Sources */,
+				60488CCD28565ABE00F465D9 /* AverageView.swift in Sources */,
+				601A8277285F175B001B5781 /* DistanceView.swift in Sources */,
+				601A827B285F2179001B5781 /* ContentView.swift in Sources */,
 				60488CCB28565ABE00F465D9 /* RustySwiftApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -189,7 +240,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				60488CCE28565ABE00F465D9 /* ContentView.swift in Sources */,
+				60488CCE28565ABE00F465D9 /* AverageView.swift in Sources */,
+				601A8278285F175B001B5781 /* DistanceView.swift in Sources */,
+				601A827C285F2179001B5781 /* ContentView.swift in Sources */,
 				60488CCC28565ABE00F465D9 /* RustySwiftApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -248,6 +301,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = rusty/target;
 				LIBRARY_SEARCH_PATHS = rusty/target/debug;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -304,6 +358,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = rusty/target;
 				LIBRARY_SEARCH_PATHS = (
 					"rusty/target/x86_64-apple-darwin/release",
 					"rusty/target/aarch64-apple-darwin/release",
