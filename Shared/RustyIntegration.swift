@@ -40,6 +40,9 @@ struct Polygon {
             }
         }
     }
+    var description: String { 
+        polygon_description(raw).map(String.init(cString:)) ?? ""
+    }
     var length: Double { polygon_length(raw) }
     
     func add(_ point: Point) {
@@ -50,3 +53,6 @@ struct Polygon {
         polygon_remove(raw, Int64(index))
     }
 }
+
+@_cdecl("point_equals")
+func pointEquals(left: Point, right: Point) -> Bool { left == right }

@@ -17,6 +17,7 @@ struct LengthView: View {
 
     @State var polygon = Polygon()
     @State var points: [Point] = []
+    @State var status: String = ""
     var items: [Item] {
         $points.enumerated().map { Item(id: $0.offset, points: $points) }
     }
@@ -52,10 +53,17 @@ struct LengthView: View {
                 })
                 .disabled(selection == nil)
             }
+            GroupBox {
+                Text(status)
+            }
         }
         .onChange(of: points) { newPoints in
             polygon.points = newPoints
             length = polygon.length
+            status = polygon.description
+        }
+        .onAppear() {
+            status = polygon.description
         }
         .padding()
     }
