@@ -17,6 +17,10 @@
 		60488CCE28565ABE00F465D9 /* AverageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60488CBC28565ABC00F465D9 /* AverageView.swift */; };
 		60488CCF28565ABE00F465D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60488CBD28565ABE00F465D9 /* Assets.xcassets */; };
 		60488CD028565ABE00F465D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60488CBD28565ABE00F465D9 /* Assets.xcassets */; };
+		60A517A528609BC60058266C /* LengthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A517A428609BC60058266C /* LengthView.swift */; };
+		60A517A628609BC60058266C /* LengthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A517A428609BC60058266C /* LengthView.swift */; };
+		60A517A828609EC00058266C /* RustyIntegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A517A728609BDD0058266C /* RustyIntegration.swift */; };
+		60A517A928609EC10058266C /* RustyIntegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A517A728609BDD0058266C /* RustyIntegration.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +34,8 @@
 		60488CC828565ABE00F465D9 /* RustySwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RustySwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60488CCA28565ABE00F465D9 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		60488CD928565C7F00F465D9 /* rusty */ = {isa = PBXFileReference; lastKnownFileType = folder; path = rusty; sourceTree = "<group>"; };
+		60A517A428609BC60058266C /* LengthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LengthView.swift; sourceTree = "<group>"; };
+		60A517A728609BDD0058266C /* RustyIntegration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RustyIntegration.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,9 +69,11 @@
 		60488CBA28565ABC00F465D9 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				60A517A728609BDD0058266C /* RustyIntegration.swift */,
 				60488CBB28565ABC00F465D9 /* RustySwiftApp.swift */,
 				60488CBC28565ABC00F465D9 /* AverageView.swift */,
 				601A8276285F175B001B5781 /* DistanceView.swift */,
+				60A517A428609BC60058266C /* LengthView.swift */,
 				601A8275285F1754001B5781 /* ContentView.swift */,
 				60488CBD28565ABE00F465D9 /* Assets.xcassets */,
 				601A8274285E3A59001B5781 /* BridgingHeader.h */,
@@ -231,7 +239,9 @@
 			files = (
 				60488CCD28565ABE00F465D9 /* AverageView.swift in Sources */,
 				601A8277285F175B001B5781 /* DistanceView.swift in Sources */,
+				60A517A528609BC60058266C /* LengthView.swift in Sources */,
 				601A827B285F2179001B5781 /* ContentView.swift in Sources */,
+				60A517A828609EC00058266C /* RustyIntegration.swift in Sources */,
 				60488CCB28565ABE00F465D9 /* RustySwiftApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -242,7 +252,9 @@
 			files = (
 				60488CCE28565ABE00F465D9 /* AverageView.swift in Sources */,
 				601A8278285F175B001B5781 /* DistanceView.swift in Sources */,
+				60A517A628609BC60058266C /* LengthView.swift in Sources */,
 				601A827C285F2179001B5781 /* ContentView.swift in Sources */,
+				60A517A928609EC10058266C /* RustyIntegration.swift in Sources */,
 				60488CCC28565ABE00F465D9 /* RustySwiftApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

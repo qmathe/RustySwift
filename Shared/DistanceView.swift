@@ -1,21 +1,11 @@
 //
-//  PointView.swift
+//  DistanceView.swift
 //  Shared
 //
 //  Created by Quentin Mathé on 12/06/2022.
 //
 
 import SwiftUI
-
-public typealias Point = RustyPoint
-
-extension Point: Equatable {
-    static let zero: Point = .init(x: 0, y: 0)
-    
-    public static func == (left: Point, right: Point) -> Bool {
-        left.x == right.x && left.y == right.y
-    }
-}
 
 struct DistanceView: View {
     

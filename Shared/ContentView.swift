@@ -19,6 +19,10 @@ struct ContentView: View {
                 .tabItem {
                     Text("Distance")
                 }
+            LengthView()
+                .tabItem {
+                    Text("Length")
+                }
         }
         .padding(24)
         .frame(maxWidth: 600, maxHeight: 400)

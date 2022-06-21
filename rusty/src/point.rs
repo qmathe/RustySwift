@@ -1,7 +1,8 @@
 #[repr(C)]
+#[derive(Copy, Clone)]
 pub struct Point {
-    x: f64,
-    y: f64,
+    pub x: f64,
+    pub y: f64,
 }
 
 impl Point {
