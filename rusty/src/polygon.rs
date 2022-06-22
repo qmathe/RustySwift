@@ -50,7 +50,7 @@ impl Polygon {
 }
 
 // 
-// PART 2: C COMPATBILITY CODE
+// PART 2: C COMPATIBILITY CODE
 //
 
 // Returning Rust struct as C opaque pointer 

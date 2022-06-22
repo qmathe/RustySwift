@@ -16,7 +16,7 @@ impl Point {
 }
 
 // 
-// PART 2: C COMPATBILITY CODE
+// PART 2: C COMPATIBILITY CODE
 //
 
 #[no_mangle]
