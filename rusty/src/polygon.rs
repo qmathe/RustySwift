@@ -36,10 +36,13 @@ impl Polygon {
     
     pub fn description(&self) -> String {
         let len = self.points.len();
-        let status = if len > 1 && unsafe { point_equals(self.points[0], self.points[1]) } { 
-            "closed"  
-        } else { 
-            "opened"
+        let status = match (self.points.first(), self.points.last()) {
+            (Some(first), Some(last)) => if unsafe { point_equals(*first, *last) } {
+                    "closed"
+                } else {
+                    "opened"
+                }
+            _ => "opened"  
         };
         let id = self.id;
         format!("Polygon containing {len} points ({status}) [{id}]")
@@ -91,6 +94,11 @@ pub extern "C" fn polygon_points(ptr: *mut Polygon, len: *mut c_uint) -> *mut Po
     Box::into_raw(slice) as *mut Point
 }
 
+// Must not be called when C array length is not zero. For empty vector, polygon_points() returns 
+// a null pointer.
+//
+// Another alternative is to pass the length as an argument and use Box::from_raw_parts_mut() which 
+// takes a length in argument (see https://stackoverflow.com/q/62708492)
 #[no_mangle]
 pub extern "C" fn free_points(points: *mut Point) {
     drop(unsafe { Box::from_raw(points) });
@@ -170,6 +178,7 @@ extern "C" {
 // If you keep the string around after the function, use into_owned() as shown here.
 //
 // For this function, the string is not needed after parse_str(), so using into_owned() is superfluous.
+#[allow(dead_code)]
 fn random_uuid() -> Uuid {
     let str = unsafe {
         let ptr = random_uuid_str();

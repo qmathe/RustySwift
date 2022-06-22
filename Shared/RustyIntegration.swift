@@ -28,8 +28,11 @@ struct Polygon {
         get { 
             var len: UInt32 = 0 
             let pointer = polygon_points(raw, &len)
+            guard len > 0 else { 
+                return []
+            }
             let points = Array(UnsafeBufferPointer(start: pointer, count: Int(len)))
-            //free_points(pointer)
+            free_points(pointer)
             return points
         }
         set {
@@ -61,7 +64,7 @@ struct Polygon {
 }
 
 @_cdecl("point_equals")
-func pointEquals(left: Point, right: Point) -> Bool { left == right }
+func pointEquals(left: Point, right: Point) -> CBool { left == right }
 
 // The returned string must deallocated on Rust side with libc::free().
 @_cdecl("random_uuid_str")

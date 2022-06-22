@@ -59,6 +59,7 @@ struct LengthView: View {
         }
         .onChange(of: points) { newPoints in
             polygon.points = newPoints
+            print(polygon.points)
             length = polygon.length
             status = polygon.description
         }
