@@ -7,9 +7,15 @@ use std::ffi::{CString, CStr};
 use libc;
 use uuid::Uuid;
 
+// Exposing Swift global function exported as C function
+
 extern "C" {
     fn point_equals(left: Point, right: Point) -> bool;
 }
+
+// 
+// PART 1: RUST CODE
+//
 
 #[derive(Clone)]
 pub struct Polygon {
@@ -40,6 +46,12 @@ impl Polygon {
     }
 }
 
+// 
+// PART 2: C COMPATBILITY CODE
+//
+
+// Returning Rust struct as C opaque pointer 
+
 #[no_mangle]
 pub extern "C" fn polygon_new() -> *mut Polygon {
     Box::into_raw(Box::new(Polygon::new()))
@@ -64,6 +76,8 @@ pub extern "C" fn polygon_length(ptr: *mut Polygon) -> f64 {
     polygon.length()
 }
 
+// Converting Rust vector into C array
+
 #[no_mangle]
 pub extern "C" fn polygon_points(ptr: *mut Polygon, len: *mut c_uint) -> *mut Point {
     let polygon = unsafe {
@@ -82,6 +96,8 @@ pub extern "C" fn free_points(points: *mut Point) {
     drop(unsafe { Box::from_raw(points) });
 }
 
+// Converting C array into Rust vector
+
 #[no_mangle]
 pub extern "C" fn polygon_set_points(ptr: *mut Polygon, points: *const Point, len: c_uint) {
     let polygon = unsafe {
@@ -94,6 +110,8 @@ pub extern "C" fn polygon_set_points(ptr: *mut Polygon, points: *const Point, le
     polygon.points.clear();
     polygon.points.extend_from_slice(slice)
 }
+
+// Mutating underlying Rust vector directly
 
 #[no_mangle]
 pub extern "C" fn polygon_push(ptr: *mut Polygon, point: Point) {
@@ -110,6 +128,8 @@ pub extern "C" fn polygon_remove(ptr: *mut Polygon, i: i64) {
         assert!(!ptr.is_null());
         &mut *ptr
     };
+    // When usize doesn't match i64, casting with 'as' succeed but the number is truncated, so it's
+    // better to use a safe conversion and abort on failure.
     polygon.points.remove(usize::try_from(i).unwrap());
 }
 

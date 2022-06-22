@@ -1,3 +1,7 @@
+// 
+// PART 1: RUST CODE
+//
+
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct Point {
@@ -10,6 +14,10 @@ impl Point {
         (self.x - other.x).hypot(self.y - other.y)
     }
 }
+
+// 
+// PART 2: C COMPATBILITY CODE
+//
 
 #[no_mangle]
 pub extern "C" fn distance_to(point: Point, other: Point) -> f64 {
