@@ -7,6 +7,8 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+libc = "0.2"
+uuid = "1.1.2"
 
 # For building the release versions:
 # $ cargo build --release --target=x86_64-apple-darwin

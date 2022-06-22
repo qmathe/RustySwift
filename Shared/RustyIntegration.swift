@@ -5,6 +5,7 @@
 //  Created by Quentin Mathé on 12/06/2022.
 //
 
+import Foundation
 import Swift
 
 // MARK: - Point
@@ -28,7 +29,7 @@ struct Polygon {
             var len: UInt32 = 0 
             let pointer = polygon_points(raw, &len)
             let points = Array(UnsafeBufferPointer(start: pointer, count: Int(len)))
-            free_points(pointer)
+            //free_points(pointer)
             return points
         }
         set {
@@ -41,7 +42,12 @@ struct Polygon {
         }
     }
     var description: String { 
-        polygon_description(raw).map(String.init(cString:)) ?? ""
+        guard let cString = polygon_description(raw) else {
+            return ""
+        }
+        let string = String(cString: UnsafePointer(cString))
+        free_polygon_description(cString)
+        return string
     }
     var length: Double { polygon_length(raw) }
     
@@ -56,3 +62,9 @@ struct Polygon {
 
 @_cdecl("point_equals")
 func pointEquals(left: Point, right: Point) -> Bool { left == right }
+
+// The returned string must deallocated on Rust side with libc::free().
+@_cdecl("random_uuid_str")
+func randomUUIDString() -> UnsafePointer<CChar> {
+    UnsafePointer(strdup(UUID().uuidString)!)
+}

@@ -228,7 +228,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "source \"$HOME/.cargo/env\"\ncd rusty\nif [ $CONFIGURATION = \"Release\" ]; then\n    cargo build --release --target=x86_64-apple-darwin\n    cargo build --release --target=aarch64-apple-darwin \nelse\n    cargo build\nfi;\ncbindgen . -o target/rusty.h\n";
+			shellScript = "set -e\nsource \"$HOME/.cargo/env\"\ncd rusty\nif [ $CONFIGURATION = \"Release\" ]; then\n    cargo build --release --target=x86_64-apple-darwin\n    cargo build --release --target=aarch64-apple-darwin \nelse\n    cargo build\nfi;\ncbindgen . -o target/rusty.h\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

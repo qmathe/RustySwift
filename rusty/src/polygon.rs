@@ -2,7 +2,10 @@ use crate::point::Point;
 use std::slice;
 use std::os::raw::c_uint;
 use std::os::raw::c_char;
-use std::ffi::CString;
+use std::os::raw::c_void;
+use std::ffi::{CString, CStr};
+use libc;
+use uuid::Uuid;
 
 extern "C" {
     fn point_equals(left: Point, right: Point) -> bool;
@@ -10,12 +13,13 @@ extern "C" {
 
 #[derive(Clone)]
 pub struct Polygon {
+    id: Uuid,
     points: Vec<Point>
 }
 
 impl Polygon {
     pub fn new() -> Polygon {
-        Polygon { points: vec![] }
+        Polygon { id: random_uuid_no_copy(), points: vec![] }
     }
 
     pub fn length(&self) -> f64 {
@@ -31,7 +35,8 @@ impl Polygon {
         } else { 
             "opened"
         };
-        format!("Polygon containing {len} points ({status})")
+        let id = self.id;
+        format!("Polygon containing {len} points ({status}) [{id}]")
     }
 }
 
@@ -108,12 +113,65 @@ pub extern "C" fn polygon_remove(ptr: *mut Polygon, i: i64) {
     polygon.points.remove(usize::try_from(i).unwrap());
 }
 
+// Converting Rust String to C String
 
+// The returned string must be deallocated on Swift with free_polygon_description().
+//
+// Using free() to deallocate would corrupt memory (not always resulting in an immediate crash), 
+// since Rust allocates memory with a different allocator than libc.
+//
+// CString::from_raw() takes *mut c_char as argument rather than *const c_char, so the return type 
+// cannot be *const c_char as you would expect.
 #[no_mangle]
-pub extern "C" fn polygon_description(ptr: *mut Polygon) -> *const c_char {
+pub extern "C" fn polygon_description(ptr: *mut Polygon) -> *mut c_char {
     let polygon = unsafe {
         assert!(!ptr.is_null());
         &mut *ptr
     };
     CString::new(polygon.description()).unwrap().into_raw()
+}
+
+#[no_mangle]
+pub extern "C" fn free_polygon_description(s: *mut c_char) {
+    unsafe {
+        if s.is_null() {
+            return;
+        }
+        CString::from_raw(s)
+    };
+}
+
+// Converting C String to Rust String + Calling Swift C function from Rust
+
+extern "C" {
+    fn random_uuid_str() -> *const c_char;
+}
+
+// If you keep the string around after the function, use into_owned() as shown here.
+//
+// For this function, the string is not needed after parse_str(), so using into_owned() is superfluous.
+fn random_uuid() -> Uuid {
+    let str = unsafe {
+        let ptr = random_uuid_str();
+        // to_string_lossy() returns Cow<str> (copy-on-write string slice) and into_owned() turns 
+        // this slice into a new Rust string
+        let str = CStr::from_ptr(ptr).to_string_lossy().into_owned();
+        libc::free(ptr as *mut c_void);
+        str
+    };
+    let uuid = Uuid::parse_str(&str).unwrap();
+    uuid
+}
+
+// If you don't keep the string around at the end, remove into_owned() to eliminate a string copy.
+fn random_uuid_no_copy() -> Uuid {
+    let (str, ptr) = unsafe { 
+        let ptr = random_uuid_str();
+        (CStr::from_ptr(ptr).to_string_lossy(), ptr)
+    };
+    let uuid = Uuid::parse_str(&str).unwrap();
+    unsafe { 
+        libc::free(ptr as *mut c_void);
+    }
+    uuid
 }
