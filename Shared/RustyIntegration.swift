@@ -15,6 +15,10 @@ public typealias Point = RustyPoint
 extension Point: Equatable {
     static let zero: Point = .init(x: 0, y: 0)
     
+    func distance(to other: Point) -> Double {
+        distance_to(self, other)
+    }
+    
     public static func == (left: Point, right: Point) -> Bool {
         left.x == right.x && left.y == right.y
     }
@@ -22,7 +26,7 @@ extension Point: Equatable {
 
 // MARK: - Polygon
 
-struct Polygon {
+class Polygon {
     let raw: OpaquePointer = polygon_new()
     var points: [Point] {
         get { 
@@ -54,6 +58,10 @@ struct Polygon {
     }
     var length: Double { polygon_length(raw) }
     
+    deinit {
+        polygon_free(raw)
+    }
+
     func add(_ point: Point) {
         polygon_push(raw, point)
     }

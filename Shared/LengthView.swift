@@ -16,6 +16,7 @@ struct LengthView: View {
     }
 
     @State var polygon = Polygon()
+    // Caching polygon state in the view could be eliminated by making Polygon conforms to ObservableObject
     @State var points: [Point] = []
     @State var status: String = ""
     var items: [Item] {

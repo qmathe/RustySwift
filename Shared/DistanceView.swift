@@ -40,6 +40,6 @@ struct DistanceView: View {
     }
     
     func update(_ value: Point) {
-        result = distance_to(a, b)
+        result = a.distance(to: b)
     }
 }
