@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+#if os(macOS)
+
 struct LengthView: View {
     
     struct Item: Identifiable {
@@ -70,3 +72,6 @@ struct LengthView: View {
         .padding()
     }
 }
+
+#endif
+

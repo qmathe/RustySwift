@@ -19,10 +19,12 @@ struct ContentView: View {
                 .tabItem {
                     Text("Distance")
                 }
+            #if os(macOS)
             LengthView()
                 .tabItem {
                     Text("Length")
                 }
+            #endif
         }
         .padding(24)
         .frame(maxWidth: 600, maxHeight: 400)

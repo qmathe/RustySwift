@@ -210,7 +210,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "source \"$HOME/.cargo/env\"\ncd topaz\nif [ $CONFIGURATION = \"Release\" ]; then\n    cargo build --release --target=x86_64-apple-ios\n    cargo build --release --target=aarch64-apple-ios\nelse\n    cargo build\nfi;\ncbindgen . -o target/rusty.h\n";
+			shellScript = "source \"$HOME/.cargo/env\"\n# Customizing the library path is required, otherwise the linker complains about libSystem being not found.\n# See https://blog.mozilla.org/data/2022/01/31/this-week-in-glean-building-and-deploying-a-rust-library-on-ios/\nif [[ -n \"${DEVELOPER_SDK_DIR:-}\" ]]; then\n  export LIBRARY_PATH=\"${DEVELOPER_SDK_DIR}/MacOSX.sdk/usr/lib:${LIBRARY_PATH:-}\"\nfi\ncd rusty\nif [ $CONFIGURATION = \"Release\" ]; then\n    cargo build --release --target=x86_64-apple-ios\n    cargo build --release --target=aarch64-apple-ios\nelse\n    # For ARM Macs: cargo build --target aarch64-apple-ios-sim\n    cargo build --target=x86_64-apple-ios\nfi;\ncbindgen . -o target/rusty.h\n";
 		};
 		601A827A285F19FB001B5781 /* Rust */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -404,6 +404,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"rusty/target/x86_64-apple-ios/debug",
+					"rusty/target/aarch64-apple-ios/debug",
+					"rusty/target/aarch64-apple-ios-sim/debug",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.quentinmathe.RustySwift;
 				PRODUCT_NAME = RustySwift;
@@ -433,6 +438,11 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"rusty/target/x86_64-apple-ios/release",
+					"rusty/target/aarch64-apple-ios/release",
+					"rusty/target/aarch64-apple-ios-sim/release",
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.quentinmathe.RustySwift;
